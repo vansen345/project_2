@@ -23,12 +23,18 @@ class _LoginState extends State<Login> {
   String password = '';
   String errorMessage = '';
   String emailErrorMessage = '';
-  clearMessage() => emailErrorMessage = '';
+  String passErrorMessage = '';
+  clearMessage() {
+    emailErrorMessage = '';
+    passErrorMessage = '';
+  }
+
   final emailCtr = TextEditingController();
+  final passCtr = TextEditingController();
 
   onChange() {
     // clearMessage();
-    print('object');
+
     setState(() {
       emailErrorMessage = emailCtr.text.isEmpty ? 'kkkkk' : '';
     });
@@ -70,6 +76,35 @@ class _LoginState extends State<Login> {
                   onChanged: (value) {
                     onChange();
                   },
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  emailErrorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(18, 25, 18, 18),
+                child: formField(
+                  controller: passCtr,
+                  name: 'Pass',
+                  text: 'Nhập Pass',
+                  icon: Icons.mail,
+                  onChanged: (value) {
+                    onChange();
+                    // setState(() {
+                    //   passErrorMessage = value.isEmpty ? 'passs' : '';
+                    // });
+                  },
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  passErrorMessage,
+                  style: TextStyle(color: Colors.red),
                 ),
               ),
               Container(
@@ -211,11 +246,6 @@ class _LoginState extends State<Login> {
             prefixIcon: Icon(icon),
           ),
         ),
-        if (emailErrorMessage.isNotEmpty)
-          Text(
-            emailErrorMessage,
-            style: TextStyle(color: Colors.red),
-          )
       ],
     );
   }
