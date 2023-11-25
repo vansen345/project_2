@@ -33,8 +33,6 @@ class _LoginState extends State<Login> {
   final passCtr = TextEditingController();
 
   onChange() {
-    // clearMessage();
-
     setState(() {
       emailErrorMessage = emailCtr.text.isEmpty ? 'kkkkk' : '';
     });
